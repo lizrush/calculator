@@ -22,8 +22,23 @@ def square(first)
  	Math.sqrt(first)
 end
 
+puts "Who are you?"
+name = gets.chomp
+
+if name.empty?
+		puts "Ok, I will call you Dave."
+		name = "Dave"
+else 
+		puts "Hi, #{name}"
+end
+
 puts "+, -, *, /, find the exponent, or find the square root?"
-action = gets.chomp.downcase
+if gets != "+" "-" "*" "/" "find the exponent" "find the square root"
+	puts "Sorry I can't do that, #{name}"
+	exit
+else 
+	action = gets.chomp.downcase
+end
 
 if action != "find the square root"
 	puts "First number?"
@@ -33,8 +48,14 @@ if action != "find the square root"
 			puts "Hey, why don't you pick a number?"
 			first_input = gets.chomp
 		end
-		first_num = first_input.to_i
 
+		while first_input.to_i.to_s != first_input
+			puts "Put in an integer (like 5 instead of five)"
+			first_input = gets.chomp
+		end
+
+	first_num = first_input.to_i	
+	
 	puts "Second number?"
 	second_input = gets.chomp
 
@@ -42,6 +63,12 @@ if action != "find the square root"
 			puts "Hey, why don't you pick a number?"
 			second_input = gets.chomp
 		end
+		
+		while second_input.to_i.to_s != second_input
+			puts "Put in an integer (like 5 instead of five)"
+			second_input = gets.chomp
+		end
+
 		second_num = second_input.to_i
 
 else
@@ -52,6 +79,12 @@ else
 			puts "Hey, why don't you pick a number?"
 			singluar_input = gets.chomp
 		end
+		
+		while singluar_input.to_i.to_s != singluar_input
+			puts "Put in an integer (like 5 instead of five)"
+			singluar_input = gets.chomp
+		end
+
 		single_num = singluar_input.to_i
 end		
 
@@ -68,7 +101,8 @@ elsif action == "find the exponent"
 elsif action == "find the square root"
 	result = "the square root of #{single_num} = #{square(single_num)}" 
 else
-  result = "Sorry, I don't know how to do that, Dave."
+  result = "Sorry, I don't know how to do that, #{name}."
 end
 
 puts result
+
